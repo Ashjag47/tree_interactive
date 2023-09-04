@@ -5,6 +5,7 @@ import ADUModal from "../components/ADUModal";
 import BFS from "../utils/BFS";
 import { v4 as uuidv4 } from "uuid";
 import "./TreePage.css";
+import ModeTabs from "../components/ModeTabs";
 
 function TreePage() {
   const [SCB, setSCB] = useState({
@@ -15,19 +16,28 @@ function TreePage() {
     children: [],
   });
 
+  const [mode, setMode] = useState("View");
+
+  const [isOpen, setIsOpen] = useState(false);
+
   const [node, setNode] = useState(undefined);
-  const onClose = () => setNode(undefined);
+  const onClose = () => setIsOpen(false);
   const handleSubmit = (name) => {
-    const newTree = BFS(node.data.attributes.id, SCB, name);
+    const newTree = BFS(node.data.attributes.id, SCB, name, mode);
     if (newTree) setSCB(newTree);
     onClose();
   };
   return (
     <Box h="100vh" w="100vw">
+      <ModeTabs mode={mode} setMode={setMode} />
       <Tree
         data={SCB}
         onNodeClick={(datum) => {
-          setNode(datum);
+          if (mode === "View") setNode(datum);
+          else if (mode === "Add" || mode === "Update") {
+            setNode(datum);
+            setIsOpen(true);
+          }
         }}
         translate={{ x: 200, y: 200 }}
         rootNodeClassName="node__root"
@@ -35,9 +45,10 @@ function TreePage() {
         leafNodeClassName="node__leaf"
       />
       <ADUModal
-        isOpen={Boolean(node)}
+        isOpen={isOpen}
         onClose={onClose}
         onSubmit={handleSubmit}
+        mode={mode}
       />
     </Box>
   );

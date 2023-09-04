@@ -13,15 +13,29 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-function ADUModal({ isOpen, onClose, onSubmit }) {
+function ADUModal({ isOpen, onClose, onSubmit, mode }) {
   const [name, setName] = useState("");
+  let header, button;
+  switch (mode) {
+    case "Add":
+      header = "Add a Node";
+      button = "Add";
+      break;
+    case "Update":
+      header = "Update a Node";
+      button = "Update";
+      break;
+    default:
+      header = "View a Node";
+      button = "View";
+  }
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
 
       <ModalContent>
-        <ModalHeader> Add a Node</ModalHeader>
+        <ModalHeader> {header}</ModalHeader>
 
         <ModalCloseButton />
 
@@ -40,10 +54,12 @@ function ADUModal({ isOpen, onClose, onSubmit }) {
           <Button
             colorScheme="blue"
             disabled={!name}
-            mr={3}
-            onClick={() => onSubmit(name)}
+            onClick={() => {
+              onSubmit(name);
+              setName("");
+            }}
           >
-            Add
+            {button}
           </Button>
         </ModalFooter>
       </ModalContent>
