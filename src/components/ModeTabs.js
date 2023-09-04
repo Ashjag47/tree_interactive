@@ -8,6 +8,7 @@ function ModeTabs({ mode, setMode }) {
         <Tab onClick={() => setMode("View")}>View</Tab>
         <Tab onClick={() => setMode("Add")}>Add</Tab>
         <Tab onClick={() => setMode("Update")}>Update</Tab>
+        <Tab onClick={() => setMode("Delete")}>Delete</Tab>
       </TabList>
 
       <TabPanels>
@@ -19,6 +20,9 @@ function ModeTabs({ mode, setMode }) {
         </TabPanel>
         <TabPanel>
           <p>Update Mode</p>
+        </TabPanel>
+        <TabPanel>
+          <p>Delete Mode</p>
         </TabPanel>
       </TabPanels>
     </Tabs>

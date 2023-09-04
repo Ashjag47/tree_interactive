@@ -34,7 +34,7 @@ function TreePage() {
         data={SCB}
         onNodeClick={(datum) => {
           if (mode === "View") setNode(datum);
-          else if (mode === "Add" || mode === "Update") {
+          else if (mode === "Add" || mode === "Update" || mode === "Delete") {
             setNode(datum);
             setIsOpen(true);
           }
@@ -49,6 +49,7 @@ function TreePage() {
         onClose={onClose}
         onSubmit={handleSubmit}
         mode={mode}
+        node={node}
       />
     </Box>
   );
