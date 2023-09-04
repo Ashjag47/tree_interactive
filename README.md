@@ -1,4 +1,3 @@
-
 # Interactive Tree Structure
 
 The current project displays the hierarchical data in a tree-like structure. Further new data can be added, deleted, or updated. 
