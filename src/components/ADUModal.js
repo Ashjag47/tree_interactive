@@ -53,7 +53,9 @@ function ADUModal({ isOpen, onClose, onSubmit, mode, node }) {
             {mode !== "Delete" ? (
               <Input
                 placeholder="Node Name"
-                value={name}
+                value={
+                  name === "" && mode === "Update" ? node?.data?.name : name
+                }
                 onChange={(e) => setName(e.target.value)}
               />
             ) : (
