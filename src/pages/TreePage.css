@@ -1,0 +1,13 @@
+.rd3t-label__attributes {
+    display: none;
+}  
+.node__root > circle {
+    fill: rgb(30, 1, 61);
+  }
+  .node__branch > circle {
+    fill: rgb(94, 8, 128);
+  }
+  
+  .node__leaf > circle {
+    fill: rgb(237, 104, 228);
+  }
